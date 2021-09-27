@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Title</title>
+    <link href="/static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{block/header::headerA}"></div>
+<main role="main" class="container">
+    <h1 th:text="${title}"></h1>
+
+    <div th:object="${surveyForm}">
+        <p th:text="*{age}"></p>
+        <p th:text="*{satisfaction}"></p>
+        <p th:text="*{comment}"></p>
+
+
+        <form method="post" th:action="@{/survey/form}">
+            <input id="age" name="age" type="hidden" th:value="*{age}">
+            <input id="satisfaction" name="satisfaction" type="hidden" th:value="*{satisfaction}">
+            <input id="comment" name="comment" type="hidden" th:value="*{comment}">
+            <input type="submit" value="Back">
+        </form>
+
+
+        <form method="post" th:action="@{/survey/complete}">
+            <input id="age" name="age" type="hidden" th:value="*{age}">
+            <input id="satisfaction" name="satisfaction" type="hidden" th:value="*{satisfaction}">
+            <input id="comment" name="comment" type="hidden" th:value="*{comment}">
+            <input type="submit" value="Complete">
+        </form>
+    </div>
+</main>
+</body>
+</html>

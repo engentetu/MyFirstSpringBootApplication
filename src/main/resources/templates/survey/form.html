@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Title</title>
+    <link href="/static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{block/header::headerA}"></div>
+<main role="main" class="container">
+    <h1 th:text="${title}"></h1>
+
+    <h1 th:text="${complete}"></h1>
+
+    <form method="post" action="#" th:action="@{/survey/confirm}" th:object="${surveyForm}">
+
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input class="form-check-input" type="number" name="age" id="age" th:value="*{age}"><br>
+            <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+        </div>
+        <div class="form-group">
+            <p>Satisfaction:</p>
+            <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="satisfaction" id="s1" value="1"
+                   th:checked="*{satisfaction == 1}">
+            <label class="form-check-label" for="s1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="satisfaction" id="s2" value="2"
+                   th:checked="*{satisfaction == 2}">
+            <label class="form-check-label" for="s2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="satisfaction" id="s3" value="3"
+                   th:checked="*{satisfaction == 3}">
+            <label class="form-check-label" for="s3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="satisfaction" id="s4" value="4"
+                   th:checked="*{satisfaction == 4}">
+            <label class="form-check-label" for="s4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="satisfaction" id="s5" value="5"
+                   th:checked="*{satisfaction == 5}">
+            <label class="form-check-label" for="s5">5</label>
+            </div>
+            <div class="form-check form-check-inline">
+            <div th:if="${#fields.hasErrors('satisfaction')}" th:errors="*{satisfaction}"></div>
+        </div>
+        <div class="form-group">
+            <label for="comment">Comment:</label>
+            <textarea class="form-control" id="comment" name="comment" rows="3" cols="40"
+                      th:field="*{comment}"></textarea><br>
+            <div th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
+        </div>
+
+        <input class="btn-primary" type="submit" value="Submit">
+
+    </form>
+</main>
+</body>
+</html>

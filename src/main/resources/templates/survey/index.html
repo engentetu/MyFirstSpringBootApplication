@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Title</title>
+    <link href="/static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{block/header::headerA}"></div>
+<main role="main" class="container">
+
+    <table class="table table-striped">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">age</th>
+            <th scope="col">satisfaction</th>
+            <th scope="col">comment</th>
+            <th scope="col">created</th>
+        </tr>
+        <tr th:each="survey: ${surveyList}">
+            <td th:text="${survey.id}"></td>
+            <td th:text="${survey.age}"></td>
+            <td th:text="${survey.satisfaction}"></td>
+            <td th:text="${survey.comment}"></td>
+            <td th:text="${survey.created}"></td>
+        </tr>
+    </table>
+</main>
+</body>
+</html>

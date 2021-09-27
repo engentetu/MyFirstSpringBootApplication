@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Title</title>
+    <link href="/static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{block/header::headerA}"></div>
+<main role="main" class="container">
+    <h1 th:text="${title}"></h1>
+
+    <div th:object="${inquiryForm}">
+        <p th:text="*{name}"></p>
+        <p th:text="*{email}"></p>
+        <p th:text="*{contents}"></p>
+
+
+        <form method="post" action="#" th:action="@{/inquiry/form}">
+            <input id="name" name="name" type="hidden" th:value="*{name}"><br>
+            <input id="email" name="email" type="hidden" th:value="*{email}"><br>
+            <input id="contents" name="contents" type="hidden" th:value="*{contents}"><br>
+            <input type="submit" value="Go Back">
+        </form>
+
+        <form method="post" action="#" th:action="@{/inquiry/complete}">
+            <input id="name" name="name" type="hidden" th:value="*{name}"><br>
+            <input id="email" name="email" type="hidden" th:value="*{email}"><br>
+            <input id="contents" name="contents" type="hidden" th:value="*{contents}"><br>
+            <input type="submit" value="Complete">
+        </form>
+    </div>
+</main>
+</body>
+</html>
